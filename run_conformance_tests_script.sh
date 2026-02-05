@@ -12,7 +12,7 @@ fi
 BUILD_FOLDER=$1
 CONF_TESTS_FOLDER=$2
 CURRENT_DIR=$(pwd)
-PYTHON_BUILD_SUBFOLDER="python_conformance_$BUILD_FOLDER"
+PYTHON_BUILD_SUBFOLDER=".tmp/$1"
 
 # Verify environment variables required for Slack interaction
 if [ -z "$SLACK_BOT_TOKEN" ]; then

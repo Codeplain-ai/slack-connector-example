@@ -10,7 +10,7 @@ if [ -z "$1" ]; then
 fi
 
 PROJECT_FOLDER=$1
-PYTHON_BUILD_SUBFOLDER="python_build_$PROJECT_FOLDER"
+PYTHON_BUILD_SUBFOLDER=".tmp/$1"
 
 echo "Preparing Python environment in: $PYTHON_BUILD_SUBFOLDER"
 
