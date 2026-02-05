@@ -1,0 +1,31 @@
+---
+import:
+  - slack_app_reqs
+---
+
+***implementation reqs***
+
+- :SlackClient: should initialize an instance of `slack_sdk.WebClient`.
+- Error handling should be implemented for SlackApiError exceptions.
+- The client should be initialized with the `SLACK_BOT_TOKEN`.
+
+***functional specs***
+
+- Implement the initialization logic for :SlackClient:.
+  - Load the bot token from the environment.
+  - Validate the connection using the `auth.test` Slack API method.
+
+- Implement the get_dm_history function in :SlackClient:.
+  - Take a :User: user_id as input.
+  - Retrieve the conversation ID for the DM with that user.
+  - Fetch the last 20 :Message: entries from that conversation.
+  - Return a list of :Message: objects.
+
+- Implement the send_dm_message function in :SlackClient:.
+  - Take a :User: user_id and a text string as input.
+  - Send the text as a message to the DM channel associated with the user_id.
+
+  ***acceptance tests***
+
+  - :SlackClient: should return a list of :Message: objects when fetching history.
+  - A message sent via :SlackClient: should appear in the retrieved history for that user.

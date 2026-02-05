@@ -1,0 +1,41 @@
+---
+description: "Non-functional requirements and technical constraints for the Slack CLI app."
+---
+
+***definitions***
+- :SlackClient: is a service class that wraps the Slack SDK to perform API operations.
+
+- :User: is an entity representing a participant in a Slack conversation. :User: has the following attributes:
+  - user_id - The unique Slack identifier (e.g., U12345).
+
+- :Message: is a data structure representing a single chat entry. :Message: has the following attributes:
+  - text - The string content of the message.
+  - sender_id - The :User: ID of the person who sent the message.
+  - timestamp - The Slack 'ts' value representing when the message was sent.
+
+- :Conversation: is a collection of :Message: objects belonging to a specific DM channel.
+
+***implementation reqs***
+
+- :Implementation: must be written in Python 3.11+.
+- The following external libraries must be used:
+  - `slack_sdk` for interacting with the Slack Web API.
+  - `python-dotenv` for managing environment variables.
+- The following environment variables must be supported and loaded via a .env file:
+  - `SLACK_BOT_TOKEN`: The OAuth token for the Slack bot.
+  - `SLACK_DM_ID`: The default user ID to be used during automated testing.
+- The project structure should include:
+  - `main.py`: The entry point for the CLI application.
+  - `client.py`: The Slack API client implementation.
+  - `models.py`: Data structures for messages and users.
+
+- The `SLACK_BOT_TOKEN` is available in the environment.
+
+- The reference [SlackDocs](./docs/slack_docs.md) should be used as a reference for the Slack SDK.
+
+***test reqs***
+
+- :ConformanceTests: must be implemented using the `unittest` framework.
+- :ConformanceTests: must not mock the Slack API.
+- All tests must use the `SLACK_BOT_TOKEN` and `SLACK_DM_ID` from the environment.
+- Tests should verify actual message delivery and retrieval from the Slack workspace.

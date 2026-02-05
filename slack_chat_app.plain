@@ -1,0 +1,44 @@
+---
+import:
+  - slack_app_reqs
+requires:
+  - slack_client
+---
+
+***definitions***
+
+- :SlackChatApp: is the CLI application that manages the user interaction loop.
+
+***implementation reqs***
+
+- The application should use standard `input()` for receiving user messages.
+- Output should be printed to the terminal using standard `print()` statements.
+
+- Sender Name should be fetched from the Slack API using the sender_id.
+
+***functional specs***
+
+- Implement the CLI entry point in `main.py`.
+  - Accept a user_id as a command-line argument.
+  - Initialize the :SlackClient:.
+
+- Implement the interactive chat loop in :SlackChatApp:.
+  - Fetch and display the recent :Message: history for the provided user_id upon startup.
+  - Display messages in the format: `[Timestamp] Sender Name: MessageText`.
+  - Prompt the user for input using the `> ` string.
+  - The messages should be refreshed every 5 seconds. This should not affect the user's typing.
+  - Refreshing should not output additional messages to the terminal besides the refreshed messages.
+
+- Implement command handling within the chat loop.
+  - If the user enters `/exit`, the application should terminate.
+  - If the user enters any other text, send that text as a message using :SlackClient:.
+  - After sending a message, the app should automatically refresh the display.
+
+  ***acceptance tests***
+
+  - :SlackChatApp: should exit with status code 0 when the `/exit` command is used.
+  - :SlackChatApp: should display the user_id provided in the CLI argument in the message history header.
+  - :SlackChatApp: should display a message sent by the user in the refreshed history view.
+
+- Running main.py with the --list_users command should list all users in the Slack workspace.
+
