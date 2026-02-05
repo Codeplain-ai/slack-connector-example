@@ -9,6 +9,9 @@ import:
 - Error handling should be implemented for SlackApiError exceptions.
 - The client should be initialized with the `SLACK_BOT_TOKEN`.
 
+***test reqs***
+- There individual functions of the client should be tested. It should not be tested throught the CLI.
+
 ***functional specs***
 
 - Implement the initialization logic for :SlackClient:.
@@ -18,7 +21,7 @@ import:
 - Implement the get_dm_history function in :SlackClient:.
   - Take a :User: user_id as input.
   - Retrieve the conversation ID for the DM with that user.
-  - Fetch the last 20 :Message: entries from that conversation.
+  - Fetch the last :Message: entries from that conversation. Up to the 50 most recent messages.
   - Return a list of :Message: objects.
 
 - Implement the send_dm_message function in :SlackClient:.
